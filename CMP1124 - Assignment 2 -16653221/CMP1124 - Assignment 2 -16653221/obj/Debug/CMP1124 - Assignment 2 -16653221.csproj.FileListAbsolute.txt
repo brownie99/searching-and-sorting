@@ -5,3 +5,10 @@ C:\Users\scurr\source\repos\CMP1124 - Assignment 2 -16653221\CMP1124 - Assignmen
 C:\Users\scurr\source\repos\CMP1124 - Assignment 2 -16653221\CMP1124 - Assignment 2 -16653221\obj\Debug\CMP1124 - Assignment 2 -16653221.csproj.CoreCompileInputs.cache
 C:\Users\scurr\source\repos\CMP1124 - Assignment 2 -16653221\CMP1124 - Assignment 2 -16653221\obj\Debug\CMP1124 - Assignment 2 -16653221.exe
 C:\Users\scurr\source\repos\CMP1124 - Assignment 2 -16653221\CMP1124 - Assignment 2 -16653221\obj\Debug\CMP1124 - Assignment 2 -16653221.pdb
+G:\GitHub\searching-and-sorting\CMP1124 - Assignment 2 -16653221\CMP1124 - Assignment 2 -16653221\bin\Debug\CMP1124 - Assignment 2 -16653221.exe.config
+G:\GitHub\searching-and-sorting\CMP1124 - Assignment 2 -16653221\CMP1124 - Assignment 2 -16653221\bin\Debug\CMP1124 - Assignment 2 -16653221.exe
+G:\GitHub\searching-and-sorting\CMP1124 - Assignment 2 -16653221\CMP1124 - Assignment 2 -16653221\bin\Debug\CMP1124 - Assignment 2 -16653221.pdb
+G:\GitHub\searching-and-sorting\CMP1124 - Assignment 2 -16653221\CMP1124 - Assignment 2 -16653221\obj\Debug\CMP1124 - Assignment 2 -16653221.csprojAssemblyReference.cache
+G:\GitHub\searching-and-sorting\CMP1124 - Assignment 2 -16653221\CMP1124 - Assignment 2 -16653221\obj\Debug\CMP1124 - Assignment 2 -16653221.csproj.CoreCompileInputs.cache
+G:\GitHub\searching-and-sorting\CMP1124 - Assignment 2 -16653221\CMP1124 - Assignment 2 -16653221\obj\Debug\CMP1124 - Assignment 2 -16653221.exe
+G:\GitHub\searching-and-sorting\CMP1124 - Assignment 2 -16653221\CMP1124 - Assignment 2 -16653221\obj\Debug\CMP1124 - Assignment 2 -16653221.pdb
