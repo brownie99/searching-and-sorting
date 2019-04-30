@@ -33,7 +33,7 @@ namespace CMP1124___Assignment_2__16653221
             int placeValue;
             string currentArrName;
 
-            
+
 
             bool validSelection = false;
             bool validInt = false;
@@ -220,7 +220,7 @@ namespace CMP1124___Assignment_2__16653221
                 Console.ReadKey(true);
                 Console.WriteLine("putting array into a tree");
                 BST arrTree = new BST();
-                foreach(float f in currArr)
+                foreach (float f in currArr)
                 {
                     arrTree.Insert(f);
                 }
@@ -251,14 +251,15 @@ namespace CMP1124___Assignment_2__16653221
 
             Console.WriteLine("\nEnd");
             Console.ReadKey(true);
-            
+
 
             //linear search
-            void linearSearch(float target, float[] arr){
+            void linearSearch(float target, float[] arr)
+            {
                 bool found = false;
                 for (int i = 0; i < arr.Length; i++)
                 {
-                    if(arr[i] == target)
+                    if (arr[i] == target)
                     {
                         Console.WriteLine("Target: " + target + " is at position: " + i);
                         found = true;
@@ -269,17 +270,17 @@ namespace CMP1124___Assignment_2__16653221
                 {
                     Console.WriteLine("Value not found, looking for closest...");
                     int counter = 0;
-                    while (counter < arr.Length-1 && arr[counter] < target)
+                    while (counter < arr.Length - 1 && arr[counter] < target)
                     {
                         counter++;
                     }
-                    if(target - arr[counter-1] < arr[counter] - target)
+                    if (target - arr[counter - 1] < arr[counter] - target)
                     {
-                        Console.WriteLine("Closest number at: " + arr[counter-1]);
+                        Console.WriteLine("Closest number: " + arr[counter - 1] + " at position: " + counter);
                     }
                     else
                     {
-                        Console.WriteLine("Closest number at: " + arr[counter]);
+                        Console.WriteLine("Closest number: " + arr[counter] + " at position: " + counter);
                     }
                 }
             }
@@ -288,11 +289,11 @@ namespace CMP1124___Assignment_2__16653221
             float[] insertionSortAsc(float[] arr)
             {
                 float[] sortedArr = new float[arr.Length];
-                for(int i = 0; i < arr.Length; i++)
+                for (int i = 0; i < arr.Length; i++)
                 {
                     float currF = arr[i];
                     int j = i - 1;
-                    while(j >= 0 && currF < sortedArr[j])
+                    while (j >= 0 && currF < sortedArr[j])
                     {
                         sortedArr[j + 1] = sortedArr[j];
                         j--;
@@ -327,8 +328,8 @@ namespace CMP1124___Assignment_2__16653221
                 float[] sortedArr = new float[arr.Length];
                 float[] left;
                 float[] right;
-                
-                if(arr.Length <= 1)
+
+                if (arr.Length <= 1)
                 {
                     return arr;
                 }
@@ -336,7 +337,7 @@ namespace CMP1124___Assignment_2__16653221
                 int midPoint = arr.Length / 2;
                 left = new float[midPoint];
 
-                if (arr.Length%2 == 0)
+                if (arr.Length % 2 == 0)
                 {
                     right = new float[midPoint];
                 }
@@ -345,7 +346,7 @@ namespace CMP1124___Assignment_2__16653221
                     right = new float[midPoint + 1];
                 }
 
-                for(int i = 0; i < midPoint; i++)
+                for (int i = 0; i < midPoint; i++)
                 {
                     left[i] = arr[i];
                 }
@@ -371,11 +372,11 @@ namespace CMP1124___Assignment_2__16653221
                 int indexRight = 0;
                 int indexSorted = 0;
 
-                while(indexLeft < left.Length || indexRight < right.Length)
+                while (indexLeft < left.Length || indexRight < right.Length)
                 {
                     if (indexLeft < left.Length && indexRight < right.Length)
                     {
-                        if(left[indexLeft] <= right[indexRight])
+                        if (left[indexLeft] <= right[indexRight])
                         {
                             sortedArrs[indexSorted] = left[indexLeft];
                             indexLeft++;
@@ -388,13 +389,13 @@ namespace CMP1124___Assignment_2__16653221
                             indexRight++;
                         }
                     }
-                    else if(indexLeft < left.Length)
+                    else if (indexLeft < left.Length)
                     {
                         sortedArrs[indexSorted] = left[indexLeft];
                         indexLeft++;
                         indexSorted++;
                     }
-                    else if(indexRight < right.Length)
+                    else if (indexRight < right.Length)
                     {
                         sortedArrs[indexSorted] = right[indexRight];
                         indexRight++;
@@ -482,8 +483,8 @@ namespace CMP1124___Assignment_2__16653221
                         indexRight++;
                         indexSorted++;
                     }
-                    
-                    
+
+
                 }
                 return sortedArrs;
             }
@@ -492,7 +493,7 @@ namespace CMP1124___Assignment_2__16653221
             //quick sorts ascending and descending
             float[] quickSortAsc(float[] arr, int low, int high)
             {
-                if (low< high)
+                if (low < high)
                 {
                     int pi = pivotAsc(arr, low, high);
                     quickSortAsc(arr, low, pi - 1);
@@ -501,7 +502,7 @@ namespace CMP1124___Assignment_2__16653221
                 return arr;
             }
 
-            int pivotAsc (float[] arr, int low, int high)
+            int pivotAsc(float[] arr, int low, int high)
             {
                 float pivotNum = arr[high];
 
@@ -602,38 +603,41 @@ namespace CMP1124___Assignment_2__16653221
 
         public void treeSearch(float target)
         {
+            int counter = 0;
             bool found;
-            found = search(Root, target);
+            found = search(Root, target, ref counter);
             if (!found)
             {
                 Console.WriteLine("value not found, finding closest");
                 Program.closestNum = Math.Abs(target - Root.value);
-                Console.WriteLine("Closest value in binary tree: " + closestSearch(Root, target, Program.closestNum));
+                counter = 0;
+                Console.WriteLine("Closest value in binary tree: " + closestSearch(Root, target, Program.closestNum, ref counter) + " at node: " + counter);
             }
         }
 
-        bool search(Node n, float target)
+        bool search(Node n, float target, ref int counter)
         {
-            int counter = 0;
+            
             bool found = false;
             if (n != null)
             {
                 if (n.value == target)
                 {
-                    Console.WriteLine("Target at posistion: " + counter);
+                    Console.WriteLine("Target at node: " + counter);
                     found = true;
                     return found;
                 }
                 else
                 {
-                    found = search(n.Left, target);
+                    counter++;
+                    found = search(n.Left, target, ref counter);
                     if (found)
                     {
                         return found;
                     }
                     else
                     {
-                        found = search(n.Right, target);
+                        found = search(n.Right, target, ref counter);
                         if (found)
                         {
                             return found;
@@ -645,21 +649,22 @@ namespace CMP1124___Assignment_2__16653221
 
         }
 
-        float closestSearch(Node n, float target, float closest)
+        float closestSearch(Node n, float target, float closest, ref int counter)
         {
             
             if (n != null)
             {
-                closestSearch(n.Left, target, Program.closestNum);
+                closestSearch(n.Left, target, Program.closestNum, ref counter);
                 if (Math.Abs(target - n.value) < Math.Abs(target - Program.closestNum))
                 {
+                    counter++;
                     Program.closestNum = n.value;
 
                 }
-                
-                closestSearch(n.Right, target, Program.closestNum);
+
+                closestSearch(n.Right, target, Program.closestNum, ref counter);
             }
-            
+
             return Program.closestNum;
 
         }
@@ -677,7 +682,7 @@ namespace CMP1124___Assignment_2__16653221
             Program.printArr(numAsc, spacer);
         }
 
-        private void PrintInOrder(Node n, List<float>numAsc)
+        private void PrintInOrder(Node n, List<float> numAsc)
         {
             if (n != null)
             {
@@ -738,7 +743,7 @@ namespace CMP1124___Assignment_2__16653221
         }
 
 
-        
+
     }
 
     class Node
