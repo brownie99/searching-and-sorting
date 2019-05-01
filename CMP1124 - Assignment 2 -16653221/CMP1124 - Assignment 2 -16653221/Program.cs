@@ -10,6 +10,10 @@ namespace CMP1124___Assignment_2__16653221
 {
     class Program
     {
+        //counter of steps for algorithms
+        public static int stepCounter;
+
+        //the closest number to the target
         public static float closestNum;
         static void Main(string[] args)
         {
@@ -28,6 +32,9 @@ namespace CMP1124___Assignment_2__16653221
             Console.WriteLine("7: Low-4096");
             Console.WriteLine("8: Mean-4096");
             Console.WriteLine("9: High-4096");
+            Console.WriteLine("10: All-256");
+            Console.WriteLine("11: All-2048");
+            Console.WriteLine("12: All-4096");
 
             float[] currentArr;
             int placeValue;
@@ -135,6 +142,36 @@ namespace CMP1124___Assignment_2__16653221
                             currentArrName = "High-4096";
                             sort(currentArr, placeValue, currentArrName);
                             break;
+                        case 10:
+                            Console.WriteLine("All-256 Selected");
+                            validSelection = true;
+                            float[] all256Arr = new float[256*3];
+                            read(all256Arr, "Low_256.txt", "Mean_256.txt", "High_256.txt");
+                            currentArr = all256Arr;
+                            placeValue = 10;
+                            currentArrName = "All-256";
+                            sort(currentArr, placeValue, currentArrName);
+                            break;
+                        case 11:
+                            Console.WriteLine("All-2048 Selected");
+                            validSelection = true;
+                            float[] all2048Arr = new float[2048*3];
+                            read(all2048Arr, "Low_2048.txt", "Mean_2048", "High_2048");
+                            currentArr = all2048Arr;
+                            placeValue = 50;
+                            currentArrName = "All-2048";
+                            sort(currentArr, placeValue, currentArrName);
+                            break;
+                        case 12:
+                            Console.WriteLine("All-4096 Selected");
+                            validSelection = true;
+                            float[] all4096Arr = new float[4096*3];
+                            read(all4096Arr, "Low_4096.txt", "Mean_4096.txt", "High_4096.txt");
+                            currentArr = all4096Arr;
+                            placeValue = 80;
+                            currentArrName = "All-4096";
+                            sort(currentArr, placeValue, currentArrName);
+                            break;
                         default:
                             Console.WriteLine("Error, Invalid Selection");
                             break;
@@ -147,25 +184,7 @@ namespace CMP1124___Assignment_2__16653221
             }
 
             //read in data
-            void read(float[] arr, string path)
-            {
-                StreamReader reader = new StreamReader(path);
-                Console.WriteLine("Reading Files...");
-                //Get information from files
-                string line = reader.ReadLine();
-                int counter = 0;
-                while (line != null)
-                {
-                    float num;
-                    bool valid = float.TryParse(line, out num);
-                    if (valid)
-                    {
-                        arr[counter] = num;
-                        counter++;
-                    }
-                    line = reader.ReadLine();
-                }
-            }
+            
 
 
             //sort array with different methods
@@ -179,14 +198,20 @@ namespace CMP1124___Assignment_2__16653221
                 Console.ReadKey(true);
                 float[] sortedAscCurrentArr = new float[currArr.Length];
                 Array.Copy(currArr, sortedAscCurrentArr, currArr.Length);
+                stepCounter = 0;
                 sortedAscCurrentArr = insertionSortAsc(sortedAscCurrentArr);
                 Console.WriteLine("\n\nAscending Order\n");
                 printArr(sortedAscCurrentArr, spacing);
+                Console.WriteLine("Completed in " + stepCounter + " steps");
+                stepCounter = 0;
                 float[] sortedDescCurrentArr = new float[currArr.Length];
                 Array.Copy(currArr, sortedDescCurrentArr, currArr.Length);
+                stepCounter = 0;
                 sortedDescCurrentArr = insertionSortDesc(sortedDescCurrentArr);
                 Console.WriteLine("\n\nDescending Order\n");
                 printArr(sortedDescCurrentArr, spacing);
+                Console.WriteLine("Completed in " + stepCounter + " steps");
+                stepCounter = 0;
                 Console.WriteLine("\nInsertion sort finished");
                 Console.WriteLine("----------------------");
                 //merge sorts
@@ -194,12 +219,18 @@ namespace CMP1124___Assignment_2__16653221
                 Console.ReadKey(true);
                 Console.WriteLine("\n\nAscending Order\n");
                 Array.Copy(currArr, sortedAscCurrentArr, currArr.Length);
+                stepCounter = 0;
                 sortedAscCurrentArr = mergeSortAsc(sortedAscCurrentArr);
                 printArr(sortedAscCurrentArr, spacing);
+                Console.WriteLine("Completed in " + stepCounter + " steps");
+                stepCounter = 0;
                 Console.WriteLine("\n\nDescending Order\n");
                 Array.Copy(currArr, sortedDescCurrentArr, currArr.Length);
+                stepCounter = 0;
                 sortedDescCurrentArr = mergeSortDesc(sortedDescCurrentArr);
                 printArr(sortedDescCurrentArr, spacing);
+                Console.WriteLine("Completed in " + stepCounter + " steps");
+                stepCounter = 0;
                 Console.WriteLine("\nMerge sort finished");
                 Console.WriteLine("----------------------");
                 //quick sorts
@@ -207,12 +238,18 @@ namespace CMP1124___Assignment_2__16653221
                 Console.ReadKey(true);
                 Console.WriteLine("\n\nAscending Order\n");
                 Array.Copy(currArr, sortedAscCurrentArr, currArr.Length);
+                stepCounter = 0;
                 sortedAscCurrentArr = quickSortAsc(sortedAscCurrentArr, 0, sortedAscCurrentArr.Length - 1);
                 printArr(sortedAscCurrentArr, spacing);
+                Console.WriteLine("Completed in " + stepCounter + " steps");
+                stepCounter = 0;
                 Console.WriteLine("\n\nDescending Order\n");
                 Array.Copy(currArr, sortedDescCurrentArr, currArr.Length);
+                stepCounter = 0;
                 sortedDescCurrentArr = quickSortDesc(sortedDescCurrentArr, 0, sortedDescCurrentArr.Length - 1);
                 printArr(sortedDescCurrentArr, spacing);
+                Console.WriteLine("Completed in " + stepCounter + " steps");
+                stepCounter = 0;
                 Console.WriteLine("\nQuick sort finished");
                 Console.WriteLine("----------------------");
                 //binary search tree sorts
@@ -220,14 +257,18 @@ namespace CMP1124___Assignment_2__16653221
                 Console.ReadKey(true);
                 Console.WriteLine("putting array into a tree");
                 BST arrTree = new BST();
+                stepCounter = 0;
                 foreach (float f in currArr)
                 {
                     arrTree.Insert(f);
                 }
                 Console.WriteLine("\n\nAscending Order\n");
-                arrTree.PrintTreeAsc(10);
+                arrTree.PrintTreeAsc(spacing);
+                Console.WriteLine("Completed in " + stepCounter + " steps");
                 Console.WriteLine("\n\nDescending Order\n");
-                arrTree.PrintTreeDesc(10);
+                arrTree.PrintTreeDesc(spacing);
+                Console.WriteLine("Completed in " + stepCounter + " steps");
+                stepCounter = 0;
                 Console.WriteLine("\nTree sort finished");
                 Console.WriteLine("----------------------");
                 Console.WriteLine("All sorts finished");
@@ -243,9 +284,12 @@ namespace CMP1124___Assignment_2__16653221
                     }
                 }
                 Console.WriteLine();
+                //linear search
                 Console.WriteLine("Linear Search\n");
                 linearSearch(target, sortedAscCurrentArr);
+                //tree search
                 Console.WriteLine("\n\nTree search");
+                stepCounter = 0;
                 arrTree.treeSearch(target);
             }
 
@@ -256,45 +300,55 @@ namespace CMP1124___Assignment_2__16653221
             //linear search
             void linearSearch(float target, float[] arr)
             {
+                List<int> positions = new List<int>();
+                stepCounter = 0;
                 bool found = false;
                 for (int i = 0; i < arr.Length; i++)
                 {
+                    stepCounter++;
                     if (arr[i] == target)
                     {
                         Console.WriteLine("Target: " + target + " is at position: " + i);
+                        Console.WriteLine("Completed in " + stepCounter + " steps");
                         found = true;
-                        break;
                     }
                 }
                 if (!found)
                 {
                     Console.WriteLine("Value not found, looking for closest...");
-                    int counter = 0;
+                    int counter = 1;
                     while (counter < arr.Length - 1 && arr[counter] < target)
                     {
                         counter++;
+                        stepCounter++;
                     }
                     if (target - arr[counter - 1] < arr[counter] - target)
                     {
                         Console.WriteLine("Closest number: " + arr[counter - 1] + " at position: " + counter);
+                        Console.WriteLine("Completed in " + stepCounter + " steps");
                     }
                     else
                     {
                         Console.WriteLine("Closest number: " + arr[counter] + " at position: " + counter);
+                        Console.WriteLine("Completed in " + stepCounter + " steps");
                     }
                 }
+                stepCounter = 0;
             }
 
             //insertion sorts ascending and descending
             float[] insertionSortAsc(float[] arr)
             {
+                stepCounter = 0;
                 float[] sortedArr = new float[arr.Length];
                 for (int i = 0; i < arr.Length; i++)
                 {
+                    stepCounter++;
                     float currF = arr[i];
                     int j = i - 1;
                     while (j >= 0 && currF < sortedArr[j])
                     {
+                        stepCounter++;
                         sortedArr[j + 1] = sortedArr[j];
                         j--;
                     }
@@ -305,13 +359,16 @@ namespace CMP1124___Assignment_2__16653221
 
             float[] insertionSortDesc(float[] arr)
             {
+                stepCounter = 0;
                 float[] sortedArr = new float[arr.Length];
                 for (int i = 0; i < arr.Length; i++)
                 {
+                    stepCounter++;
                     float currF = arr[i];
                     int j = i - 1;
                     while (j >= 0 && currF > sortedArr[j])
                     {
+                        stepCounter++;
                         sortedArr[j + 1] = sortedArr[j];
                         j--;
                     }
@@ -325,6 +382,7 @@ namespace CMP1124___Assignment_2__16653221
 
             float[] mergeSortAsc(float[] arr)
             {
+                stepCounter++;
                 float[] sortedArr = new float[arr.Length];
                 float[] left;
                 float[] right;
@@ -354,6 +412,7 @@ namespace CMP1124___Assignment_2__16653221
                 int x = 0;
                 for (int i = midPoint; i < arr.Length; i++)
                 {
+                    stepCounter++;
                     right[x] = arr[i];
                     x++;
                 }
@@ -364,6 +423,7 @@ namespace CMP1124___Assignment_2__16653221
                 return sortedArr;
             }
 
+            //merging function
             float[] mergeAsc(float[] left, float[] right)
             {
                 int sortedLength = left.Length + right.Length;
@@ -374,6 +434,7 @@ namespace CMP1124___Assignment_2__16653221
 
                 while (indexLeft < left.Length || indexRight < right.Length)
                 {
+                    stepCounter++;
                     if (indexLeft < left.Length && indexRight < right.Length)
                     {
                         if (left[indexLeft] <= right[indexRight])
@@ -407,6 +468,7 @@ namespace CMP1124___Assignment_2__16653221
 
             float[] mergeSortDesc(float[] arr)
             {
+                stepCounter++;
                 float[] sortedArr = new float[arr.Length];
                 float[] left;
                 float[] right;
@@ -436,6 +498,7 @@ namespace CMP1124___Assignment_2__16653221
                 int x = 0;
                 for (int i = midPoint; i < arr.Length; i++)
                 {
+                    stepCounter++;
                     right[x] = arr[i];
                     x++;
                 }
@@ -446,6 +509,7 @@ namespace CMP1124___Assignment_2__16653221
                 return sortedArr;
             }
 
+            //merging function
             float[] mergeDesc(float[] left, float[] right)
             {
                 int sortedLength = left.Length + right.Length;
@@ -456,6 +520,7 @@ namespace CMP1124___Assignment_2__16653221
 
                 while (indexLeft < left.Length || indexRight < right.Length)
                 {
+                    stepCounter++;
                     if (indexLeft < left.Length && indexRight < right.Length)
                     {
                         if (left[indexLeft] >= right[indexRight])
@@ -493,6 +558,7 @@ namespace CMP1124___Assignment_2__16653221
             //quick sorts ascending and descending
             float[] quickSortAsc(float[] arr, int low, int high)
             {
+                stepCounter++;
                 if (low < high)
                 {
                     int pi = pivotAsc(arr, low, high);
@@ -509,6 +575,7 @@ namespace CMP1124___Assignment_2__16653221
                 int i = low - 1;
                 for (int j = low; j < high; j++)
                 {
+                    stepCounter++;
                     if (arr[j] < pivotNum)
                     {
                         i++;
@@ -527,6 +594,7 @@ namespace CMP1124___Assignment_2__16653221
 
             float[] quickSortDesc(float[] arr, int low, int high)
             {
+                stepCounter++;
                 if (low < high)
                 {
                     int pi = pivotDesc(arr, low, high);
@@ -543,6 +611,7 @@ namespace CMP1124___Assignment_2__16653221
                 int i = low - 1;
                 for (int j = low; j < high; j++)
                 {
+                    stepCounter++;
                     if (arr[j] > pivotNum)
                     {
                         i++;
@@ -590,6 +659,74 @@ namespace CMP1124___Assignment_2__16653221
                 count++;
             }
         }
+
+
+        //read in data function
+        static void read(float[] arr, string path)
+        {
+            StreamReader reader = new StreamReader(path);
+            Console.WriteLine("Reading Files...");
+            //Get information from files
+            string line = reader.ReadLine();
+            int counter = 0;
+            while (line != null)
+            {
+                float num;
+                bool valid = float.TryParse(line, out num);
+                if (valid)
+                {
+                    arr[counter] = num;
+                    counter++;
+                }
+                line = reader.ReadLine();
+            }
+        }
+
+        static void read(float[] arr, string path1, string path2, string path3)
+        {
+            StreamReader reader1 = new StreamReader(path1);
+            StreamReader reader2 = new StreamReader(path2);
+            StreamReader reader3 = new StreamReader(path3);
+            Console.WriteLine("Reading Files...");
+            //Get information from files
+            string line = reader1.ReadLine();
+            int counter = 0;
+            while (line != null)
+            {
+                float num;
+                bool valid = float.TryParse(line, out num);
+                if (valid)
+                {
+                    arr[counter] = num;
+                    counter++;
+                }
+                line = reader1.ReadLine();
+            }
+            string line2 = reader2.ReadLine();
+            while (line2 != null)
+            {
+                float num;
+                bool valid = float.TryParse(line2, out num);
+                if (valid)
+                {
+                    arr[counter] = num;
+                    counter++;
+                }
+                line2 = reader2.ReadLine();
+            }
+            string line3 = reader3.ReadLine();
+            while (line3 != null)
+            {
+                float num;
+                bool valid = float.TryParse(line3, out num);
+                if (valid)
+                {
+                    arr[counter] = num;
+                    counter++;
+                }
+                line3 = reader3.ReadLine();
+            }
+        }
     }
 
 
@@ -601,8 +738,11 @@ namespace CMP1124___Assignment_2__16653221
         {
         }
 
+
+        //tree search
         public void treeSearch(float target)
         {
+            Program.stepCounter = 0;
             int counter = 0;
             bool found;
             found = search(Root, target, ref counter);
@@ -612,18 +752,23 @@ namespace CMP1124___Assignment_2__16653221
                 Program.closestNum = Math.Abs(target - Root.value);
                 counter = 0;
                 Console.WriteLine("Closest value in binary tree: " + closestSearch(Root, target, Program.closestNum, ref counter) + " at node: " + counter);
+                Console.WriteLine("Completed in " + Program.stepCounter + " steps");
+                Program.stepCounter = 0;
+
             }
         }
 
         bool search(Node n, float target, ref int counter)
         {
-            
+            Program.stepCounter++;
             bool found = false;
             if (n != null)
             {
                 if (n.value == target)
                 {
                     Console.WriteLine("Target at node: " + counter);
+                    Console.WriteLine("Completed in " + Program.stepCounter + " steps");
+                    Program.stepCounter = 0;
                     found = true;
                     return found;
                 }
@@ -651,7 +796,7 @@ namespace CMP1124___Assignment_2__16653221
 
         float closestSearch(Node n, float target, float closest, ref int counter)
         {
-            
+            Program.stepCounter++;
             if (n != null)
             {
                 closestSearch(n.Left, target, Program.closestNum, ref counter);
@@ -668,6 +813,8 @@ namespace CMP1124___Assignment_2__16653221
             return Program.closestNum;
 
         }
+
+        //print all values in the tree
         public void PrintTreeAsc()
         {
             List<float> numAsc = new List<float>();
@@ -677,6 +824,7 @@ namespace CMP1124___Assignment_2__16653221
 
         public void PrintTreeAsc(int spacer)
         {
+            
             List<float> numAsc = new List<float>();
             PrintInOrder(Root, numAsc);
             Program.printArr(numAsc, spacer);
@@ -717,7 +865,7 @@ namespace CMP1124___Assignment_2__16653221
             }
         }
 
-
+        //insert new element into tree
         public void Insert(float value)
         {
             InsertFunc(ref Root, value);
@@ -725,6 +873,7 @@ namespace CMP1124___Assignment_2__16653221
 
         private void InsertFunc(ref Node curr, float value)
         {
+            Program.stepCounter++;
             if (curr == null)
             {
                 curr = new Node(value);
@@ -746,6 +895,7 @@ namespace CMP1124___Assignment_2__16653221
 
     }
 
+    //node class for tree's nodes
     class Node
     {
         public float value;
